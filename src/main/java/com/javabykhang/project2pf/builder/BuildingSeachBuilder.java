@@ -7,7 +7,7 @@ public class BuildingSeachBuilder {
     private String name;
     private String street;
     private String ward;
-    private int numberOfBasement;
+    private Integer numberOfBasement;
     private String managerName;
     private String managerPhoneNumber;
     private String districtCode;
@@ -17,8 +17,7 @@ public class BuildingSeachBuilder {
     private Long areaFrom;
     private Long areaTo;
     private Long staffId;
-
-    private BuildingSeachBuilder(Builder builder){
+    public BuildingSeachBuilder(Builder builder){
         this.name = builder.name;
         this.street = builder.street;
         this.ward = builder.ward;
@@ -43,7 +42,7 @@ public class BuildingSeachBuilder {
         return ward;
     }
 
-    public int getNumberOfBasement() {
+    public Integer getNumberOfBasement() {
         return numberOfBasement;
     }
 
@@ -87,7 +86,7 @@ public class BuildingSeachBuilder {
         private String name;
         private String street;
         private String ward;
-        private int numberOfBasement;
+        private Integer numberOfBasement;
         private String managerName;
         private String managerPhoneNumber;
         private String districtCode;
@@ -98,59 +97,74 @@ public class BuildingSeachBuilder {
         private Long areaTo;
         private Long staffId;
 
-        public void setStaffId(Long staffId) {
-            this.staffId = staffId;
-        }
-
-        public void setAreaTo(Long areaTo) {
-            this.areaTo = areaTo;
-        }
-
-        public void setRentPriceTo(Long rentPriceTo) {
-            this.rentPriceTo = rentPriceTo;
-        }
-
-        public void setAreaFrom(Long areaFrom) {
-            this.areaFrom = areaFrom;
-        }
-
-        public void setRentPriceFrom(Long rentPriceFrom) {
-            this.rentPriceFrom = rentPriceFrom;
-        }
-
-        public void setStreet(String street) {
-            this.street = street;
-        }
-
-        public void setWard(String ward) {
-            this.ward = ward;
-        }
-
-        public void setManagerName(String managerName) {
-            this.managerName = managerName;
-        }
-
-        public void setDistrictCode(String districtCode) {
-            this.districtCode = districtCode;
-        }
-
-        public void setTypeCode(List<String> typeCode) {
-            this.typeCode = typeCode;
-        }
-
-        public void setManagerPhoneNumber(String managerPhoneNumber) {
-            this.managerPhoneNumber = managerPhoneNumber;
-        }
-
-        public void setNumberOfBasement(int numberOfBasement) {
-            this.numberOfBasement = numberOfBasement;
-        }
-
-        public void setName(String name) {
+        public Builder setName(String name) {
             this.name = name;
+            return this;
         }
+
+        public Builder setWard(String ward) {
+            this.ward = ward;
+            return this;
+        }
+
+        public Builder setStreet(String street) {
+            this.street = street;
+            return this;
+        }
+
+        public Builder setNumberOfBasement(Integer numberOfBasement) {
+            this.numberOfBasement = numberOfBasement;
+            return this;
+        }
+
+        public Builder setManagerName(String managerName) {
+            this.managerName = managerName;
+            return this;
+        }
+
+        public Builder setManagerPhoneNumber(String managerPhoneNumber) {
+            this.managerPhoneNumber = managerPhoneNumber;
+            return this;
+        }
+
+        public Builder setDistrictCode(String districtCode) {
+            this.districtCode = districtCode;
+            return this;
+        }
+
+        public Builder setTypeCode(List<String> typeCode) {
+            this.typeCode = typeCode;
+            return this;
+        }
+
+        public Builder setRentPriceFrom(Long rentPriceFrom) {
+            this.rentPriceFrom = rentPriceFrom;
+            return this;
+        }
+
+        public Builder setRentPriceTo(Long rentPriceTo) {
+            this.rentPriceTo = rentPriceTo;
+            return this;
+        }
+
+        public Builder setAreaFrom(Long areaFrom) {
+            this.areaFrom = areaFrom;
+            return this;
+        }
+
+        public Builder setAreaTo(Long areaTo) {
+            this.areaTo = areaTo;
+            return this;
+        }
+
+        public Builder setStaffId(Long staffId) {
+            this.staffId = staffId;
+            return this;
+        }
+
         public BuildingSeachBuilder build(){
             return new BuildingSeachBuilder(this);
         }
+
     }
 }
