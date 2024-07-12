@@ -13,7 +13,7 @@ import java.util.List;
 public class RentareaRepositoryImpl implements RentareaRepository {
 
     @Override
-    public List<RentareaEntity> findValueByBuildingID(int buildingid) {
+    public List<RentareaEntity> findValueByBuildingID(Long buildingid) {
         String sql = "select r.value from rentarea r where r.buildingid =" + buildingid + " ";
         List<RentareaEntity> rentareaEntities = new ArrayList<>();
         try {

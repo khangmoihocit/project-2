@@ -134,16 +134,16 @@ public class BuildingRepositoryImpl implements BuildingRepository {
             ResultSet rs = stmt.executeQuery(sql.toString());
             while(rs.next()){
                 BuildingEntity buildingEntity = new BuildingEntity();
-                buildingEntity.setId(rs.getInt("id"));
+                buildingEntity.setId(rs.getLong("id"));
                 buildingEntity.setName(rs.getString("name"));
                 buildingEntity.setStreet(rs.getString("street"));
                 buildingEntity.setWard(rs.getString("ward"));
-                buildingEntity.setNumberOfBasement(rs.getInt("numberofbasement"));
-                buildingEntity.setFloorArea(rs.getInt("floorarea"));
-                buildingEntity.setRentPrice(rs.getInt("rentprice"));
+                buildingEntity.setNumberOfBasement(rs.getLong("numberofbasement"));
+                buildingEntity.setFloorArea(rs.getLong("floorarea"));
+                buildingEntity.setRentPrice(rs.getLong("rentprice"));
                 buildingEntity.setManagerPhoneNumber(rs.getString("managerphonenumber"));
                 buildingEntity.setManagerName(rs.getString("managername"));
-                buildingEntity.setDistrictId(rs.getInt("districtid"));
+//                buildingEntity.setDistrictId(rs.getLong("districtid"));
                 buildingEntities.add(buildingEntity);
             }
         } catch (SQLException e) {
