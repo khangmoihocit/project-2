@@ -21,23 +21,23 @@ public class BuildingEntity {
     @Column(name = "ward")
     private String ward;
 
-    @Column(name = "numberOfBasement")
+    @Column(name = "numberofbasement")
     private Long numberOfBasement;
 
-    @Column(name = "floorArea")
+    @Column(name = "floorarea")
     private Long floorArea;
 
-    @Column(name = "rentPrice")
+    @Column(name = "rentprice")
     private Long rentPrice;
 
-    @Column(name = "managerName")
+    @Column(name = "managername")
     private String managerName;
 
-    @Column(name = "managerPhoneNumber")
+    @Column(name = "managerphonenumber")
     private String managerPhoneNumber;
 
     @ManyToOne
-    @JoinColumn(name = "districtId")
+    @JoinColumn(name = "districtid")
     private DistrictEntity district;
 
     @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)

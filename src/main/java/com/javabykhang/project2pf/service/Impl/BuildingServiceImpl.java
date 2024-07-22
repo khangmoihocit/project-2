@@ -5,10 +5,7 @@ import com.javabykhang.project2pf.converter.BuildingDTOConverter;
 import com.javabykhang.project2pf.converter.BuildingSeachBuilderConverter;
 import com.javabykhang.project2pf.model.BuildingDTO;
 import com.javabykhang.project2pf.repository.BuildingRepository;
-import com.javabykhang.project2pf.repository.DistrictRepository;
-import com.javabykhang.project2pf.repository.RentareaRepository;
 import com.javabykhang.project2pf.repository.entity.BuildingEntity;
-import com.javabykhang.project2pf.repository.entity.RentareaEntity;
 import com.javabykhang.project2pf.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +13,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class BuildingServiceImpl implements BuildingService {
     @Autowired
     private BuildingRepository buildingRepository;
+
     @Autowired
     private BuildingDTOConverter buildingDTOConverter;
     @Autowired
