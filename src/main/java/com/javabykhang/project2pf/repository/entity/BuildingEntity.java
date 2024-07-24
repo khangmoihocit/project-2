@@ -40,6 +40,8 @@ public class BuildingEntity {
     @JoinColumn(name = "districtid")
     private DistrictEntity district;
 
+    //lazy: tạm thời khong lay du lieu tu 1 building sang nhieu rentarea
+    //eager: laay luon tu 1 building se lay dc nhieu rentarea (lay tat ca cac bang lien quan)
     @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
     private List<RentareaEntity> rentareaEntities = new ArrayList<>();
 
