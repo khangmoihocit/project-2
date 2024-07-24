@@ -20,8 +20,12 @@ public class BuildingRepositoryImpl implements BuildingRepository {
     @Override
     public List<BuildingEntity> findAll(BuildingSeachBuilder buildingSeachBuilder) {
         //JPQL(JPA Query Language)
-        String sql = "FROM BuildingEntity";
-        Query query = entityManager.createQuery(sql, BuildingEntity.class);
+//        String sql = "FROM BuildingEntity";
+//        Query query = entityManager.createQuery(sql, BuildingEntity.class);
+
+        //SQL Native
+        String sql = "select * from building where name like '%building%'";
+        Query query = entityManager.createNativeQuery(sql, BuildingEntity.class);
         return query.getResultList();
     }
 }
