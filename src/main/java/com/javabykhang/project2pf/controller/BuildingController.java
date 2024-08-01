@@ -24,7 +24,7 @@ public class BuildingController {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @GetMapping("/get")
+    @GetMapping("/getAll")
     public List<BuildingDTO> getBuilding(@RequestParam Map<String, Object> params,
                                          @RequestParam(name = "typecode", required = false) List<String> typecode){
         return buildingService.findAll(params, typecode);

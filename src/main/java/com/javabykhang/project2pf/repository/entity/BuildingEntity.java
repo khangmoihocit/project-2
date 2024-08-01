@@ -45,8 +45,6 @@ public class BuildingEntity {
     @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
     private List<RentareaEntity> rentareaEntities = new ArrayList<>();
 
-    @Column(name = "rentpricedescription")
-    private String rentpricedescription;
 
     public Long getId() {
         return id;
@@ -138,14 +136,6 @@ public class BuildingEntity {
         return this;
     }
 
-    public String getRentpricedescription() {
-        return rentpricedescription;
-    }
-
-    public BuildingEntity setRentpricedescription(String rentpricedescription) {
-        this.rentpricedescription = rentpricedescription;
-        return this;
-    }
 
     public List<RentareaEntity> getRentareaEntities() {
         return rentareaEntities;
