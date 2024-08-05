@@ -1,5 +1,4 @@
 package com.javabykhang.project2pf.service.Impl;
-
 import com.javabykhang.project2pf.builder.BuildingSeachBuilder;
 import com.javabykhang.project2pf.converter.BuildingDTOConverter;
 import com.javabykhang.project2pf.converter.BuildingSeachBuilderConverter;
@@ -21,6 +20,7 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Autowired
     private BuildingDTOConverter buildingDTOConverter;
+
     @Autowired
     private BuildingSeachBuilderConverter buildingSeachBuilderConverter;
 

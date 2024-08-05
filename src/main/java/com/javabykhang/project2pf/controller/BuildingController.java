@@ -2,8 +2,8 @@ package com.javabykhang.project2pf.controller;
 
 import com.javabykhang.project2pf.model.BuildingDTO;
 import com.javabykhang.project2pf.model.BuildingRequestDTO;
+import com.javabykhang.project2pf.repository.BuildingRepository;
 import com.javabykhang.project2pf.repository.entity.BuildingEntity;
-import com.javabykhang.project2pf.repository.entity.DistrictEntity;
 import com.javabykhang.project2pf.service.BuildingService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -21,13 +21,29 @@ public class BuildingController {
     @Autowired
     private BuildingService buildingService;
 
+    //JPA of hibernate
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private BuildingRepository buildingRepository;
+
     @GetMapping("/getAll")
-    public List<BuildingDTO> getBuilding(@RequestParam Map<String, Object> params,
+    public List<BuildingDTO> getBuildings(@RequestParam Map<String, Object> params,
                                          @RequestParam(name = "typecode", required = false) List<String> typecode){
         return buildingService.findAll(params, typecode);
+    }
+
+//    @GetMapping("/get/{id}")
+//    public BuildingEntity getBuilding(@PathVariable Long id){
+//        BuildingEntity buildingEntity = buildingRepository.findById(id).get();
+//        return buildingEntity;
+//    }
+
+    @GetMapping("/get/{name}/{street}")
+    public List<BuildingEntity> getBuildingByName(@PathVariable String name, @PathVariable String street){
+        List<BuildingEntity> buildingEntity = buildingRepository.findByNameContainingAndStreet(name, street);
+        return buildingEntity;
     }
 
     @PostMapping("/get")
@@ -43,10 +59,9 @@ public class BuildingController {
         entityManager.persist(buildingEntity);
     }
 
-    @PutMapping("/get")
+    @PutMapping("/update")
     public void updateBuilding(@RequestBody BuildingRequestDTO buildingRequestDTO){
-        BuildingEntity buildingEntity = new BuildingEntity();
-        buildingEntity.setId(5L);
+        BuildingEntity buildingEntity = buildingRepository.findById(buildingRequestDTO.getId()).get();
         buildingEntity.setName(buildingRequestDTO.getName());
         buildingEntity.setStreet(buildingRequestDTO.getStreet());
         buildingEntity.setWard(buildingRequestDTO.getWard());
@@ -54,13 +69,13 @@ public class BuildingController {
 //        districtEntity.setId(buildingRequestDTO.getDistrictId());
 //        buildingEntity.setDistrict(districtEntity);
         //merge: cập nhật
-        entityManager.merge(buildingEntity);
+        buildingRepository.save(buildingEntity);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteBuilding(@PathVariable Long id){
-        BuildingEntity buildingEntity = entityManager.find(BuildingEntity.class, id);
-        entityManager.remove(buildingEntity);
+    public void deleteBuilding(@PathVariable Long[] id){
+//        buildingRepository.deleteById(id);
+        buildingRepository.deleteByIdIn(id);
     }
 
 }
