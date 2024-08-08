@@ -70,20 +70,20 @@ public class BuildingRepositoryImpl implements BuildingRepositoryCustom {
         Long rentAreaFrom = buildingSeachBuilder.getAreaFrom();
         if (rentAreaTo != null || rentAreaFrom != null){
             if(rentAreaFrom != null){
-                where.append(" and rentarea.value <= " + rentAreaFrom);
+                where.append(" and rentarea.value >= " + rentAreaFrom);
             }
             if(rentAreaTo != null){
-                where.append(" and rentarea.value >= " + rentAreaTo);
+                where.append(" and rentarea.value <= " + rentAreaTo);
             }
         }
         Long rentPriceTo = buildingSeachBuilder.getRentPriceTo();
         Long rentPriceFrom = buildingSeachBuilder.getRentPriceFrom();
         if (rentPriceTo != null || rentPriceFrom != null){
             if(rentPriceTo != null){
-                where.append(" and rentprice.value >= " + rentPriceTo);
+                where.append(" and rentprice >= " + rentPriceTo);
             }
             if(rentPriceFrom != null){
-                where.append(" and rentprice.value <= " + rentPriceFrom);
+                where.append(" and rentprice <= " + rentPriceFrom);
             }
         }
 

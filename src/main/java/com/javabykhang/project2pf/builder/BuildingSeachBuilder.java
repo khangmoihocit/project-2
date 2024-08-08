@@ -10,7 +10,7 @@ public class BuildingSeachBuilder {
     private Integer numberOfBasement;
     private String managerName;
     private String managerPhoneNumber;
-    private String districtCode;
+    private String districtid;
     private List<String> typeCode = new ArrayList<>();
     private Long rentPriceFrom;
     private Long rentPriceTo;
@@ -24,7 +24,7 @@ public class BuildingSeachBuilder {
         this.numberOfBasement = builder.numberOfBasement;
         this.managerName = builder.managerName;
         this.managerPhoneNumber = builder.managerPhoneNumber;
-        this.districtCode = builder.districtCode;
+        this.districtid = builder.districtid;
         this.typeCode = builder.typeCode;
         this.rentPriceFrom = builder.rentPriceFrom;
         this.rentPriceTo = builder.rentPriceTo;
@@ -54,8 +54,8 @@ public class BuildingSeachBuilder {
         return managerPhoneNumber;
     }
 
-    public String getDistrictCode() {
-        return districtCode;
+    public String getDistrictid() {
+        return districtid;
     }
 
     public List<String> getTypeCode() {
@@ -89,7 +89,7 @@ public class BuildingSeachBuilder {
         private Integer numberOfBasement;
         private String managerName;
         private String managerPhoneNumber;
-        private String districtCode;
+        private String districtid;
         private List<String> typeCode = new ArrayList<>();
         private Long rentPriceFrom;
         private Long rentPriceTo;
@@ -127,8 +127,8 @@ public class BuildingSeachBuilder {
             return this;
         }
 
-        public Builder setDistrictCode(String districtCode) {
-            this.districtCode = districtCode;
+        public Builder setDistrictid(String districtid) {
+            this.districtid = districtid;
             return this;
         }
 
