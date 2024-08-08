@@ -12,8 +12,8 @@ public class BuildingSeachBuilder {
     private String managerPhoneNumber;
     private String districtCode;
     private List<String> typeCode = new ArrayList<>();
-    private Long rentPriceFrom;
-    private Long rentPriceTo;
+    private Integer rentPriceFrom;
+    private Integer rentPriceTo;
     private Long areaFrom;
     private Long areaTo;
     private Long staffId;
@@ -32,6 +32,7 @@ public class BuildingSeachBuilder {
         this.areaTo = builder.areaTo;
         this.staffId = builder.staffId;
     }
+
     public String getName() {
         return name;
     }
@@ -62,11 +63,11 @@ public class BuildingSeachBuilder {
         return typeCode;
     }
 
-    public Long getRentPriceFrom() {
+    public Integer getRentPriceFrom() {
         return rentPriceFrom;
     }
 
-    public Long getRentPriceTo() {
+    public Integer getRentPriceTo() {
         return rentPriceTo;
     }
 
@@ -91,8 +92,8 @@ public class BuildingSeachBuilder {
         private String managerPhoneNumber;
         private String districtCode;
         private List<String> typeCode = new ArrayList<>();
-        private Long rentPriceFrom;
-        private Long rentPriceTo;
+        private Integer rentPriceFrom;
+        private Integer rentPriceTo;
         private Long areaFrom;
         private Long areaTo;
         private Long staffId;
@@ -137,12 +138,12 @@ public class BuildingSeachBuilder {
             return this;
         }
 
-        public Builder setRentPriceFrom(Long rentPriceFrom) {
+        public Builder setRentPriceFrom(Integer rentPriceFrom) {
             this.rentPriceFrom = rentPriceFrom;
             return this;
         }
 
-        public Builder setRentPriceTo(Long rentPriceTo) {
+        public Builder setRentPriceTo(Integer rentPriceTo) {
             this.rentPriceTo = rentPriceTo;
             return this;
         }

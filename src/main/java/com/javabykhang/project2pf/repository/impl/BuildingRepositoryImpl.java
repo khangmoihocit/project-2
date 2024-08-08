@@ -88,14 +88,14 @@ public class BuildingRepositoryImpl implements BuildingRepository {
                 where.append(" and rentarea.value >= " + rentAreaTo);
             }
         }
-        Long rentPriceTo = buildingSeachBuilder.getRentPriceTo();
-        Long rentPriceFrom = buildingSeachBuilder.getRentPriceFrom();
+        Integer rentPriceTo = buildingSeachBuilder.getRentPriceTo();
+        Integer rentPriceFrom = buildingSeachBuilder.getRentPriceFrom();
         if (rentPriceTo != null || rentPriceFrom != null){
             if(rentPriceTo != null){
-                where.append(" and rentprice.value >= " + rentPriceTo);
+                where.append(" and rentprice >= " + rentPriceTo);
             }
             if(rentPriceFrom != null){
-                where.append(" and rentprice.value <= " + rentPriceFrom);
+                where.append(" and rentprice <= " + rentPriceFrom);
             }
         }
         //java 7
