@@ -1,18 +1,22 @@
-package com.javabykhang.project2pf.repository.impl;
+package com.javabykhang.project2pf.repository.custom.impl;
 
 import com.javabykhang.project2pf.builder.BuildingSeachBuilder;
 import com.javabykhang.project2pf.repository.BuildingRepository;
+import com.javabykhang.project2pf.repository.custom.BuildingRepositoryCustom;
 import com.javabykhang.project2pf.repository.entity.BuildingEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class BuildingRepositoryImpl implements BuildingRepository {
+@Primary
+public class BuildingRepositoryImpl implements BuildingRepositoryCustom {
+    //JPA
     @PersistenceContext
     private EntityManager entityManager;
 

@@ -11,6 +11,7 @@ public class BuildingSeachBuilder {
     private String managerName;
     private String managerPhoneNumber;
     private Long districtid;
+
     private List<String> typeCode = new ArrayList<>();
     private Integer rentPriceFrom;
     private Integer rentPriceTo;
@@ -55,7 +56,9 @@ public class BuildingSeachBuilder {
         return managerPhoneNumber;
     }
 
+
     public Long getDistrictid() {
+
         return districtid;
     }
 
@@ -90,7 +93,9 @@ public class BuildingSeachBuilder {
         private Integer numberOfBasement;
         private String managerName;
         private String managerPhoneNumber;
+
         private Long districtid;
+
         private List<String> typeCode = new ArrayList<>();
         private Integer rentPriceFrom;
         private Integer rentPriceTo;
@@ -128,7 +133,9 @@ public class BuildingSeachBuilder {
             return this;
         }
 
+
         public Builder setDistrictid(Long districtid) {
+
             this.districtid = districtid;
             return this;
         }

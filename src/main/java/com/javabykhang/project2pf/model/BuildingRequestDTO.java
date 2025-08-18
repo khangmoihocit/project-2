@@ -4,10 +4,19 @@ import com.javabykhang.project2pf.repository.entity.DistrictEntity;
 import jakarta.persistence.Column;
 
 public class BuildingRequestDTO {
+    private Long id;
 
     private String name;
 
     private String street;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     private String ward;
 
