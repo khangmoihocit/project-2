@@ -1,8 +1,25 @@
 package com.javabykhang.project2pf.repository.entity;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "district")
 public class DistrictEntity {
-    private long id;
-    private String code, name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "code")
+    private String code;
+
+    @Column(name = "name")
+    private String name;
+
+    @OneToMany(mappedBy = "district", fetch = FetchType.LAZY)
+    private List<BuildingEntity> buildingEntities = new ArrayList<>();
 
     public long getId() {
         return id;

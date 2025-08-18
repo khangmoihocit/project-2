@@ -3,18 +3,18 @@ package com.javabykhang.project2pf.repository.impl;
 import com.javabykhang.project2pf.builder.BuildingSeachBuilder;
 import com.javabykhang.project2pf.repository.BuildingRepository;
 import com.javabykhang.project2pf.repository.entity.BuildingEntity;
-import com.javabykhang.project2pf.utils.ConnectionJDBCUtil;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
-
 import java.lang.reflect.Field;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
 public class BuildingRepositoryImpl implements BuildingRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public static void joinTable(BuildingSeachBuilder buildingSeachBuilder, StringBuilder sql){
         Long staffid = buildingSeachBuilder.getStaffId();
@@ -35,22 +35,6 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 
     }
     public static void queryNormal(BuildingSeachBuilder buildingSeachBuilder, StringBuilder where) {
-//        for (Map.Entry<String, Object> it : params.entrySet()){
-//            if (!it.getKey().equals("staffid") && !it.getKey().equals("typecode")
-//                    &&!it.getKey().startsWith("area") &&!it.getKey().startsWith("rentPrice")){
-//                String value = it.getValue().toString();
-//                if(StringUtil.checkString(value) == true){
-//                    if(NumberUtil.isNumber(value) == true){   //neu la so
-//                        where.append(" and b." + it.getKey() + " = " + value + " ");
-//                    }
-//                    else{ //la xau
-//                        where.append(" and b." + it.getKey() + " like '%" + value + "%' ");
-//                    }
-//                }
-//            }
-//        }
-
-        //java reflection: dùng để duyệt các field của đối tượng
         try {
             Field[] fields = BuildingSeachBuilder.class.getDeclaredFields();
             for (Field item : fields) {
@@ -60,7 +44,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
                         && !fieldName.startsWith("area") && !fieldName.startsWith("rentPrice")) {
                     Object value = item.get(buildingSeachBuilder);
                     if (value != null) {
-                            if (item.getType().getName().equals("java.lang.Long") || item.getType().getName().equals("java.lang.Integer")) {   //neu la so
+                        if (item.getType().getName().equals("java.lang.Long") || item.getType().getName().equals("java.lang.Integer")) {   //neu la so
                             where.append(" and b." + fieldName + " = " + value + " ");
                         } else if(item.getType().getName().equals("java.lang.String")) { //la xau
                             where.append(" and b." + fieldName + " like '%" + value + "%' ");
@@ -96,18 +80,9 @@ public class BuildingRepositoryImpl implements BuildingRepository {
                 where.append(" and rentprice >= " + rentPriceTo);
             }
             if(rentPriceFrom != null){
-
                 where.append(" and rentprice <= " + rentPriceFrom);
             }
         }
-        //java 7
-//        if (typecode != null && typecode.size() != 0){
-//            List<String> code = new ArrayList<>();
-//            for (String item : typecode){
-//                code.add("'" + item + "'");
-//            }
-//            where.append(" and renttype.code in (" + String.join(",", code) + ") ");
-//        }
 
         //java 8
         List<String> typecode = buildingSeachBuilder.getTypeCode();
@@ -120,38 +95,16 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 
     @Override
     public List<BuildingEntity> findAll(BuildingSeachBuilder buildingSeachBuilder) {
-        StringBuilder sql = new StringBuilder("select b.id, b.name, b.street, b.ward, b.numberofbasement, " +
-                "b.floorarea, b.rentprice, b.managername, b.managerphonenumber " +
-                ", b.districtid, b.servicefee, b.brokeragefee from building b ");
+        StringBuilder sql = new StringBuilder("select b.* from building b ");
         joinTable(buildingSeachBuilder, sql);
         StringBuilder where = new StringBuilder("where 1=1 ");
         queryNormal(buildingSeachBuilder, where);
         querySpecial(buildingSeachBuilder, where);
         where.append(" group by b.id");
+        System.out.println(sql.toString());
         sql.append(where);
-        List<BuildingEntity> buildingEntities = new ArrayList<>();
-        try {
-            Connection connection = ConnectionJDBCUtil.getConnection();
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql.toString());
-            while(rs.next()){
-                BuildingEntity buildingEntity = new BuildingEntity();
-                buildingEntity.setId(rs.getInt("id"));
-                buildingEntity.setName(rs.getString("name"));
-                buildingEntity.setStreet(rs.getString("street"));
-                buildingEntity.setWard(rs.getString("ward"));
-                buildingEntity.setNumberOfBasement(rs.getInt("numberofbasement"));
-                buildingEntity.setFloorArea(rs.getInt("floorarea"));
-                buildingEntity.setRentPrice(rs.getInt("rentprice"));
-                buildingEntity.setManagerPhoneNumber(rs.getString("managerphonenumber"));
-                buildingEntity.setManagerName(rs.getString("managername"));
-                buildingEntity.setDistrictId(rs.getInt("districtid"));
-                buildingEntities.add(buildingEntity);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return buildingEntities;
+        Query query = entityManager.createNativeQuery(sql.toString(), BuildingEntity.class);
+        return query.getResultList();
     }
 }
 

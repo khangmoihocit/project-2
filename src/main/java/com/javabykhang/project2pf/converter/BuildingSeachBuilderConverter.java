@@ -20,9 +20,11 @@ public class BuildingSeachBuilderConverter {
                                                             .setNumberOfBasement(MapUtil.getObject(params, "numberOfBasement", Integer.class))
                                                             .setAreaFrom(MapUtil.getObject(params, "areaFrom", Long.class))
                                                             .setAreaTo(MapUtil.getObject(params, "areaTo", Long.class))
-                                                            .setDistrictCode(MapUtil.getObject(params, "districtCode", String.class))
-                                                            .setRentPriceFrom(MapUtil.getObject(params, "rentPriceFrom", Integer.class))
-                                                            .setRentPriceTo(MapUtil.getObject(params, "rentPriceTo", Integer.class))
+
+                                                            .setDistrictid(MapUtil.getObject(params, "districtid", Long.class))
+                                                            .setRentPriceFrom(MapUtil.getObject(params, "rentPriceFrom", Long.class))
+                                                            .setRentPriceTo(MapUtil.getObject(params, "rentPriceTo", Long.class))
+
                                                             .setTypeCode(typecode)
                                                             .setStaffId(MapUtil.getObject(params, "staffId", Long.class))
                                                             .build();

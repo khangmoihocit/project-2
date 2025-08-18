@@ -50,6 +50,11 @@
             <artifactId>modelmapper</artifactId>
             <version>3.1.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!-- Hibernate Core -->
 
     </dependencies>
 
@@ -61,5 +66,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
