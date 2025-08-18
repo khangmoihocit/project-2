@@ -88,6 +88,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
                 where.append(" and rentarea.value <= " + rentAreaTo);
             }
         }
+
         Integer rentPriceTo = buildingSeachBuilder.getRentPriceTo();
         Integer rentPriceFrom = buildingSeachBuilder.getRentPriceFrom();
         if (rentPriceTo != null || rentPriceFrom != null){
@@ -95,6 +96,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
                 where.append(" and rentprice >= " + rentPriceTo);
             }
             if(rentPriceFrom != null){
+
                 where.append(" and rentprice <= " + rentPriceFrom);
             }
         }
