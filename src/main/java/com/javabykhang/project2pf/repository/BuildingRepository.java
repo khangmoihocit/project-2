@@ -13,4 +13,5 @@ public interface BuildingRepository extends JpaRepository<BuildingEntity, Long>,
     void deleteByIdIn(Long[] ids); //xóa nhiều id cùng lúc
     List<BuildingEntity> findByNameContaining(String s); //tim tên giống như like %b%
     List<BuildingEntity> findByNameContainingAndStreet(String name, String street); //tìm tên theo %% và street
+
 }
